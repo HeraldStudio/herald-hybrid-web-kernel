@@ -1,0 +1,16 @@
+{
+  "short_name": "小猴偷米",
+  "name": "小猴偷米",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "//myseu.cn/manifest-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "background_color": "#eeeeee",
+  "scope": "/"
+}
