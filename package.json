@@ -6,10 +6,12 @@
   "private": true,
   "scripts": {
     "dev": "parcel index.html --port 8080",
-    "build": "parcel build index.html --public-url //cdn.myseu.cn/; cp src/manifest* dist/",
-    "test": "parcel build index.html"
+    "build": "rm -rf dist && parcel build index.html --public-url /; cp src/manifest* dist/",
+    "package": "cd ./dist && zip -r ../dist.zip ./* && cd .. && rm -rf hybrid-dist/* && mv dist.zip ./hybrid-dist/kernel.zip && node ./generate-kernel-list.js && cp -R ./dist/* ./hybrid-dist/ ",
+    "test": "anywhere -s -p 8080 -d ./hybrid-dist"
   },
   "dependencies": {
+    "anywhere": "^1.5.0",
     "axios": "^0.16.2",
     "intercept-link-clicks": "^1.0.2",
     "js-cookie": "^2.2.0",
@@ -19,6 +21,7 @@
     "marked": "^0.6.0",
     "moment": "^2.23.0",
     "querystring": "^0.2.0",
+    "uuid": "^3.3.2",
     "vue": "^2.4.4",
     "vue-component-persist": "^1.1.2",
     "vue-datetime": "^1.0.0-beta.3",
@@ -41,7 +44,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "normalize.css": "^7.0.0",
     "parcel": "^1.9.7",
-    "parcel-plugin-sw-cache": "^0.2.5",
     "pug": "^2.0.0-rc.4",
     "stylus": "^0.54.5",
     "vue-hot-reload-api": "^2.3.0",
@@ -72,10 +74,6 @@
     "plugins": {
       "autoprefixer": true
     }
-  },
-  "cache": {
-    "importWorkboxFrom": "local",
-    "clientsClaim": true
   },
   "browserslist": [
     "ios >= 8",

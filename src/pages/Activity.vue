@@ -35,6 +35,10 @@
       async reload() {
         let now = new Date().getTime()
         this.activities = await api.get(`api/activity?pagesize=20`)
+        this.activities = this.activities.map( k=>{
+          k.pic = k.pic.split('://').join('s://')
+          return k
+        })
       },
       async click({ hasUrl, aid }) {
         if (hasUrl) {

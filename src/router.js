@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '@/pages/Home'
 import Index from '@/pages/Index'
 import Card from '@/pages/Card'
 import CardCharge from '@/pages/CardCharge'
@@ -30,13 +31,13 @@ Vue.use(Router)
 // 微信环境下，为隐藏前进后退按钮栏，设置 mode 为 abstract，实现完全不产生浏览器历史
 let isWeixin = /micromessenger/.test(window.navigator.userAgent.toLowerCase()) && window.__wxjs_environment !== 'miniprogram'
 
-export default new Router({
-  mode: isWeixin ? 'abstract' : 'hash',
+let router = new Router({
+  mode: 'abstract',
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: '首页',
-      component: Index
+      component: Home
     },
     {
       path: '/intro',
@@ -162,10 +163,20 @@ export default new Router({
       path: '/cet',
       name: 'CET 查询',
       component: CET
-    },
-    {
-      path: '*',
-      redirect: '/'
     }
   ]
 })
+
+window.router = router
+
+router.beforeEach((to, from, next) => {
+  if(to.query.jsbridge){
+    // 来自jsbridge的跳转命令
+    next()
+  } else {
+    window.navigateApp(to)
+    next(false)
+  }
+})
+
+export default router

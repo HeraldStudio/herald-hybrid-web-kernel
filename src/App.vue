@@ -2,22 +2,8 @@
   #app(:class='env', :is-loading='isLoading')
     .app-container
       //- base-page 为手机版底部界面，桌面版左侧栏
-      .base-page
-        seuLogin
-        scrollView(v-if='isLogin')
-          home(:user='user')
-        login(v-else)
-
-      //- overlay-page 为手机版上层栈，桌面版右侧栏
-      .overlay-page(v-if='isLogin' :class='{ home: isHome }' ref='page')
-        .overlay-header
-          transition(name='slide')
-            .title-bar(v-if='!isHome')
-              .back(@click='$router.go(-1)') ‹ 
-              .current {{ title }}
-        scrollView.overlay-router(:style='"--mouse-x: " + mouseX + "px; --mouse-y: " + mouseY + "px"')
-          transition(name='page')
-            router-view(:user='user')
+      seuLogin
+      router-view(:user='user')
 </template>
 
 <script>
@@ -78,24 +64,24 @@ import login from "@/components/Login.vue";
 import logoImg from "static/images/logo.png";
 import downloadImg from "static/images/download.png";
 
-function getOffsetTop(obj) {
-  let tmp = obj.offsetTop - obj.scrollTop;
-  let val = obj.offsetParent;
-  while (val) {
-    tmp += val.offsetTop - val.scrollTop;
-    val = val.offsetParent;
-  }
-  return tmp;
-}
-function getOffsetLeft(obj) {
-  let tmp = obj.offsetLeft - obj.scrollLeft;
-  let val = obj.offsetParent;
-  while (val) {
-    tmp += val.offsetLeft - val.scrollLeft;
-    val = val.offsetParent;
-  }
-  return tmp;
-}
+// function getOffsetTop(obj) {
+//   let tmp = obj.offsetTop - obj.scrollTop;
+//   let val = obj.offsetParent;
+//   while (val) {
+//     tmp += val.offsetTop - val.scrollTop;
+//     val = val.offsetParent;
+//   }
+//   return tmp;
+// }
+// function getOffsetLeft(obj) {
+//   let tmp = obj.offsetLeft - obj.scrollLeft;
+//   let val = obj.offsetParent;
+//   while (val) {
+//     tmp += val.offsetLeft - val.scrollLeft;
+//     val = val.offsetParent;
+//   }
+//   return tmp;
+// }
 
 // 注册 Service Worker
 // Service Worker 由 parcel-plugin-sw-cache 包自动生成
@@ -126,9 +112,8 @@ export default {
       env: window.__herald_env,
       isLoading: false,
       title: "",
-      isHome: true,
-      mouseX: 0,
-      mouseY: 0,
+      // mouseX: 0,
+      // mouseY: 0,
       logoImg,
       downloadImg
     };
@@ -138,7 +123,7 @@ export default {
       return this.$store.state.user
     },
     isLogin(){
-      return this.$store.state.isLogin
+      return window.token
     }
   },
   async created() {
@@ -158,52 +143,25 @@ export default {
         (timeout = setTimeout(() => (this.isLoading = false), 1000));
     });
 
-    // 套壳用，通过 URL 参数导入 token
-    if (/importToken=([0-9a-fA-F]+)/.test(location.search)) {
-      api.token = RegExp.$1;
-      this.$store.commit('setToken', api.token)
-      if (location.search) {
-        location.search = "";
-      }
-      let user = await api.get("/api/user");
-      user.admin = await api.get("/api/admin/admin");
-      this.$store.commit('setUser', user)
-      // 进入登录成功状态
-    } else {
-      let token = window.store.state.token // 先从 Vuex 读取 token
-      if( !token ) {
-        // 如果 Vuex 中没有 token 则 尝试从 cookie 中获取
-        token = cookie.get('herald-default-token')
-        // 将 token 更新到 Vuex 中
-        window.store.commit('setToken', token)
-      }
-      if(this.$store.state.token) {
-        let user = await api.get("/api/user");
-        user.admin = await api.get("/api/admin/admin");
-        this.$store.commit('setUser', user)
-      }
-      // 更新 token 以及失效时间
-      cookie.set('herald-default-token', token || '', { expires: 60 })
-    }
+
+    let token = window.token // 读取注入的token
+    window.store.commit('setToken', token)
+    let user = await api.get("/api/user");
+    user.admin = await api.get("/api/admin/admin");
+    this.$store.commit('setUser', user)
   },
   mounted() {
-    let el = this.$refs.page;
-    ["touchstart", "mouseup"].map(k =>
-      document.addEventListener(k, ev => {
-        this.mouseX =
-          (ev.clientX || (ev.touches && ev.touches[0].clientX)) -
-          getOffsetLeft(el);
-        this.mouseY =
-          (ev.clientY || (ev.touches && ev.touches[0].clientY)) -
-          getOffsetTop(el);
-      })
-    );
-  },
-  watch: {
-    $route(to, from) {
-      this.title = to.name;
-      this.isHome = to.path === "/";
-    }
+    // let el = this.$refs.page;
+    // ["touchstart", "mouseup"].map(k =>
+    //   document.addEventListener(k, ev => {
+    //     this.mouseX =
+    //       (ev.clientX || (ev.touches && ev.touches[0].clientX)) -
+    //       getOffsetLeft(el);
+    //     this.mouseY =
+    //       (ev.clientY || (ev.touches && ev.touches[0].clientY)) -
+    //       getOffsetTop(el);
+    //   })
+    // );
   }
 };
 </script>
@@ -463,7 +421,6 @@ export default {
         left 100%
         width 0
     .app-container
-      position fixed
       top 0
       top constant(safe-area-inset-top)
       top env(safe-area-inset-top)
@@ -476,10 +433,10 @@ export default {
       bottom 0
       bottom constant(safe-area-inset-bottom)
       bottom env(safe-area-inset-bottom)
+      padding-bottom env(safe-area-inset-bottom)
       margin 0 auto
       display flex
       flex-direction row
-      overflow hidden
       @media screen and (max-width: 600px)
         display block
       .overlay-header
@@ -513,7 +470,6 @@ export default {
         width 40%
         min-width 320px
         max-width 400px
-        overflow hidden
         display flex
         flex-direction column
         @media screen and (max-width: 600px)

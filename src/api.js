@@ -21,7 +21,7 @@ export default new Vue({
       return window.store.getters.isLogin
     },
     token() {
-      return window.store.state.token
+      return window.token
     }
   },
   methods: {
@@ -73,6 +73,8 @@ export default new Vue({
       }
     },
     updateHeaders(){
+      // token 从原生层主动获取
+      this.token = window.getToken()
       this.axios.defaults.headers.token = this.token
     }
   }
