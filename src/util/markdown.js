@@ -4,7 +4,7 @@ marked.setOptions({
   gfm: true,
   renderer: Object.assign(new marked.Renderer(), {
     link: (href, title, text) => href === text && title == null ? href : (
-      `<a href="${ href }" title="${ title || '' }">${ text }</a>`
+      `<a href="${ href }" title="${ title || '' }" target="_blank">${ text }</a>`
     )
   })
 })
