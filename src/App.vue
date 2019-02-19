@@ -31,14 +31,13 @@ const store = new Vuex.Store({
     user: {},
     isLogin: false
   },
-  plugins: [vuexLocal.plugin],
   mutations: {
     logout(state){
       state.token = "",
       state.user = {},
       state.isLogin = false
-      cookie.set('herald-default-token', '')
       localStorage.clear()
+      window.logout()
     },
     setToken(state, token) {
       state.token = token;
@@ -46,7 +45,6 @@ const store = new Vuex.Store({
     setUser(state, user){
       state.user = user
       state.isLogin = true
-      cookie.set('herald-default-token', state.token || '', { expires: 60 })
     }
   }
 });
@@ -123,7 +121,7 @@ export default {
       return this.$store.state.user
     },
     isLogin(){
-      return window.token
+      return this.$store.state.isLogin
     }
   },
   async created() {
@@ -144,10 +142,9 @@ export default {
     });
 
 
-    let token = window.token // 读取注入的token
+    let token = window.getToken(); // 读取注入的token
     window.store.commit('setToken', token)
-    let user = await api.get("/api/user");
-    user.admin = await api.get("/api/admin/admin");
+    let user = window.getUserInfo();
     this.$store.commit('setUser', user)
   },
   mounted() {

@@ -6,7 +6,7 @@
         .title {{ site }}
     ul.detail-list
       li(v-for='item in filteredNotice' :key='item.title' :class='{ important: item.isImportant }')
-        a(:href='noticeLink(item)')
+        .a(@click='noticeLink(item)')
           .top
             .left
               .tag.important(v-if='item.isImportant') 重要
@@ -86,15 +86,19 @@
       },
       noticeLink(notice) {
         if (notice.isAttachment) {
-          return notice.url
+          window.openURL(notice.url, false);
+          return
         }
+        let path
         if (notice.site === 'SRTP') {
-          return '#/notice/competition/' + notice.srtpId
+          path = '/notice/competition/' + notice.srtpId
+        } else if (notice.nid != null) {
+          path = '/notice/' + notice.nid
+        } else {
+          path = '/notice/url/' + encodeURIComponent(notice.url)
         }
-        if (notice.nid != null) {
-          return '#/notice/' + notice.nid
-        }
-        return '#/notice/url/' + encodeURIComponent(notice.url)
+        console.log(path)
+        this.$router.push(path)
       }
     }
   }

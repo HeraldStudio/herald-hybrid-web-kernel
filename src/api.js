@@ -73,9 +73,8 @@ export default new Vue({
       }
     },
     updateHeaders(){
-      // token 从原生层主动获取
-      this.token = window.getToken()
-      this.axios.defaults.headers.token = this.token
+      // token 从原生层获取
+      this.axios.defaults.headers.token = window.getToken()
     }
   }
 })
