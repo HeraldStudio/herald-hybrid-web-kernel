@@ -1,12 +1,12 @@
 <template lang='pug'>
 
   transition-group(name='fade').widget.dashboard
-    .info-container(key='info')
-      .name {{ user ? user.name : '加载中' }}
-      .identity {{ user ? user.identity : '…' }}
-        router-link(v-if='user.isNewbie' to='/intro') 新生指引 ＞
-      img.icon.grayscale(@click='tidyMode = !tidyMode' :src='tidyMode ? expandImg : collapseImg')
-      img.icon(@click='logout()' :src='logoutImg')
+    //- .info-container(key='info')
+      //- .name {{ user ? user.name : '加载中' }}
+      //- .identity {{ user ? user.identity : '…' }}
+      //-   router-link(v-if='user.isNewbie' to='/intro') 新生指引 ＞
+      //- img.icon.grayscale(@click='tidyMode = !tidyMode' :src='tidyMode ? expandImg : collapseImg')
+      //- img.icon(@click='logout()' :src='logoutImg')
     banner(key='banner' v-show='!tidyMode')
 
     .dashboard-container.border-top(key='dashboard' v-if='user')
@@ -26,7 +26,6 @@
       .row(v-if='!tidyMode')
         item(name='校历' route='/schedule' value='›')
         item(name='校车' route='/bus' value='›')
-        item(name='活动' route='/activity' :value='activities && activities.filter(k => k.endTime > Date.now()).length')
 
       .row(v-if='!tidyMode')
         item(name='洗衣房' route='/laundry' value='›')

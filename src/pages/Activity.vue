@@ -36,7 +36,9 @@
         let now = new Date().getTime()
         this.activities = await api.get(`api/activity?pagesize=20`)
         this.activities = this.activities.map( k=>{
-          k.pic = k.pic.split('://').join('s://')
+          if(k.pic.startsWith('http://')){
+            k.pic = k.pic.split('://').join('s://')
+          }
           return k
         })
       },

@@ -577,6 +577,33 @@ export default {
     //       background var(--color-divider)
     // &.mina .app-container::before
     //   content '访问 myseu.cn 使用 PWA 版完整功能'
+  .widget-title
+    border-style none none none solid 
+    border-width 8px
+    padding-left 8px
+    font-size 16px
+    font-weight bolder
+    color #333333 
+    border-color #FF8585
+    margin-top -8px
+    margin-left -8px
+  .widget-line
+    background: #F0F0F0;
+    height: 1px;
+    margin: 10px -20px;
+  .widget-hint
+    display:flex;
+    .text
+      flex-grow:0;
+      color:#888;
+    .arrow
+      flex-grow:1;
+      color: #888;
+      text-align: right;
+  
+  .widget-clickable:active
+    background:#EEE;
+
   .widget, .page, .admin-page
     position relative
     box-sizing border-box
