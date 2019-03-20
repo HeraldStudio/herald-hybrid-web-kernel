@@ -16,11 +16,6 @@
         item(v-if='isUndergraduate' name='人文讲座' :value='lecture && lecture.length' :is-stale='lecture && lecture.isStale' route='/lecture')
 
       .row
-        item(v-if='isUndergraduate' name='SRTP' :value='srtp && srtp.info.points' :is-stale='srtp && srtp.isStale' route='/srtp')
-        item(v-if='isStudent' :name='isGraduate ? "成绩" : "总绩点"' :value='gpa && (gpa.gpa || gpa.score || "暂无")' :is-stale='gpa && gpa.isStale' route='/grade' :is-graduate='isGraduate')
-
-      .row
-        item(v-if='isUndergraduate && pe && pe.count' name='跑操次数' :value='pe && pe.count' :is-stale='pe && pe.isStale' route='/pe')
         item(v-if='library && library.length' name='已借图书' :value='library && library.length' :is-stale='library && library.isStale' route='/library')
 
       .row(v-if='!tidyMode')
@@ -29,21 +24,8 @@
 
       .row(v-if='!tidyMode')
         item(name='洗衣房' route='/laundry' value='›')
-        item(name='App' route='/download' value='›')
         item(name='CET' route='/cet' value='›')
-
-      .row(v-if='!tidyMode && user.admin && user.admin.maintenance')
-        item(name='系统概况' route='/admin/monitor' value='›')
-        item(name='权限管理' route='/admin/privilege' value='›')
-        item(name='通知管理' route='/admin/notice' value='›')
-
-      .row(v-if='!tidyMode && user.admin && user.admin.publicity')
-        item(name='轮播管理' route='/admin/banner' value='›')
-        item(name='活动管理' route='/admin/activity' value='›')
-
-      .row
-        item(name='通知' route='/notice' :value='curNotice && curNotice.title || "暂无通知"')
-
+        
 </template>
 
 <script>

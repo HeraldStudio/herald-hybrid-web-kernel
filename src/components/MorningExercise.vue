@@ -1,7 +1,9 @@
 <template lang="pug">
   
-  .widget.pe(v-if='pe.count' :class='{}' @click="navigate")
-    .widget-title 跑操助手
+  .widget.pe(v-if='true || pe.count' :class='{}' @click="navigate")
+    .widget-title 
+     img(:src='logo')
+     .text 跑操助手
     .widget-line
     .content
       .content-item
@@ -26,11 +28,13 @@
 
   import api from '@/api'
   import formatter from '@/util/formatter'
+  import logo from 'static/images/componentLogo/morningExercise.svg'
 
   export default {
     data(){
       return {
-        pe:{}
+        pe:{},
+        logo
       }
     },
     persist: {
@@ -46,7 +50,6 @@
         console.log(this.pe)
       },
       navigate(){
-        console.log('跳转')
         this.$router.push('/pe')
       }
     }
