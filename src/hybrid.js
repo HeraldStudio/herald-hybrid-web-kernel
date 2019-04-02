@@ -55,3 +55,18 @@ window.getToken = function() {
         window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'logout'})
     } catch(e) {}
  }
+
+ window.setLocalNotification = function(title, body, timestamp, type) {
+     try{
+        window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'setLocalNotification', title, body, timestamp, type})
+     } catch(e) {}
+ }
+
+ window.clearLocalNotification = function(type) {
+    try{
+        window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'clearLocalNotification', type})
+     } catch(e) {}
+ }
+
+
+ 
