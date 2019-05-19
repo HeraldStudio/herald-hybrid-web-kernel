@@ -26,6 +26,7 @@ import Activity from '@/pages/Activity'
 import Notice from '@/pages/Notice'
 import CET from '@/pages/CET'
 import Classroom from '@/pages/classroom'
+import Personal from '@/pages/personal'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ let router = new Router({
       path: '/home',
       name: '首页',
       component: Home
+    },
+    {
+      path: '/personal',
+      name: '个人',
+      component: Personal
     },
     {
       path: '/intro',
