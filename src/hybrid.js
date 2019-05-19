@@ -68,5 +68,19 @@ window.getToken = function() {
      } catch(e) {}
  }
 
+ //addTodayExtItems("课程", [{color:"123456", title:"操作系统", subtitle:"3-5节，教八-301", timestamp:XXX}])
+ window.addTodayExtItems = function(type, items) {
+     // items 包含 type、color、title、subtitle、timestamp 四个字段
+     try{
+        window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'addTodayExtItems', type, items})
+    } catch(e) {}
+ }
+
+window.clearTodayExtItems = function(type) {
+    // 按照类型删除
+    try{
+       window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'clearTodayExtItems', type, items})
+   } catch(e) {}
+}
 
  

@@ -64,11 +64,11 @@ export default new Vue({
           }
           window.store.commit('logout')
         } else {
-          Vue.toasted.show('请求失败：' + reason)
+          //Vue.toasted.show('请求失败：' + reason)
           throw new Error(reason)
         }
       } else {
-        Vue.toasted.show(`请求出错 (${ httpStatus })`)
+        //Vue.toasted.show(`请求出错 (${ httpStatus })`)
         throw new Error('Request failed with status ' + httpStatus)
       }
     },

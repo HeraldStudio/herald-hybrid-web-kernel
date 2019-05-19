@@ -25,6 +25,7 @@ import Schedule from '@/pages/Schedule'
 import Activity from '@/pages/Activity'
 import Notice from '@/pages/Notice'
 import CET from '@/pages/CET'
+import Classroom from '@/pages/classroom'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ let router = new Router({
       path: '/card/charge',
       name: '一卡通充值',
       component: CardCharge
+    },
+    {
+      path: '/classroom',
+      name: '空教室',
+      component: Classroom
     },
     {
       path: '/grade',

@@ -1,6 +1,6 @@
 <template lang="pug">
   
-  .widget.pe(v-if='true || pe.count' :class='{}' @click="navigate")
+  .widget.pe(v-if='pe.count' :class='{}' @click="navigate")
     .widget-title 
      img(:src='logo')
      .text 跑操助手

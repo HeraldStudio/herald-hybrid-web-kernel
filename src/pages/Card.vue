@@ -1,16 +1,16 @@
 <template lang="pug">
 
   .page(v-if='card')
-    ul.info-bar
-      li.info
+    .info-bar
+      button.info
         .title 卡余额
         .content {{ card.info.balance }}
-      li.info
+      button.info
         .title 电子钱包余额
         .content {{ card.info.eacc }}
-      li.info.charge
-        a(href='http://yktwechat.seu.edu.cn/wechat/url/redirectJkbh.html?jkbh=0006')
-          .title 充值
+      //- button.info.charge
+      //-   a(href='http://yktwechat.seu.edu.cn/wechat/url/redirectJkbh.html?jkbh=0006')
+      //-     .title 充值
     ul.detail-list
       li(v-for='item in card.detail')
         .top

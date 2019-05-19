@@ -1,8 +1,8 @@
 <template lang="pug">
   .page
-    ul.info-bar
-      li.info(:class="{ selected : iswork }" @click="switchDay") 工作日
-      li.info(:class="{ selected : !iswork }" @click="switchDay") 休息日
+    .info-bar
+      button.info(:class="{ selected : iswork }" @click="switchDay") 工作日
+      button.info(:class="{ selected : !iswork }" @click="switchDay") 休息日
     div.detail(v-if="iswork")
       ul.detail-list 
         li.timetable-item(:class="{active: item.active}" v-for='item in workday')

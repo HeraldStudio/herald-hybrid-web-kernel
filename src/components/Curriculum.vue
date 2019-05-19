@@ -127,6 +127,26 @@
 
       // 初始情况下显示当前所在学期，这一步会触发 curriculum 拉取
       this.displayTerm = this.currentTerm
+
+      // 更新小工具
+      let curriculum = await api.get('/api/curriculum', { term: this.displayTerm })
+      let todayExts = []
+      let weekMap = ['-', '周一','周二','周三','周四','周五','周六','周日'];
+      curriculum.curriculum.forEach(c => {
+        c.events.forEach(e => {
+          let item = {
+            title:c.courseName,
+            subtitle:`${weekMap[c.dayOfWeek]} ${c.location} ${c.beginPeriod}-${c.endPeriod}节 ${c.teacherName}老师`,
+            timestamp: e.startTime,
+            color:0xffffff
+          }
+          todayExts.push(item)
+        })
+      })
+      if (todayExts.length > 0) {
+        window.clearTodayExtItems("课程")
+        window.addTodayExtItems("课程", todayExts)
+      }
     },
     watch: {
       // 改变显示学期时，触发课表拉取

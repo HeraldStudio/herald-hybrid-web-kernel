@@ -218,22 +218,31 @@ export default {
   button, input
     outline none
     border none
-    border-radius 3px
-    padding 3px 7px
+    border-radius 15px
     margin 0
-    font-size 14px
+    font-size 13px
+    box-sizing border-box
+    vertical-align middle
   button
-    font-weight bold
-    background var(--color-primary-bg)
-    color var(--color-primary-dark)
-    cursor pointer
-    &:hover
-      filter: brightness(1.1)
-    &:active
-      filter: brightness(.8)
-  button.primary
+    padding 2px 10px
     background var(--color-primary)
     color #fff
+    font-size 13px
+    font-weight bold
+    white-space nowrap
+    overflow hidden
+    cursor pointer
+    border 1px solid var(--color-primary)
+    box-shadow 0 10px 10px -10px var(--color-primary)
+    transition .3s
+    &:active
+      filter brightness(.8)
+    &.info:not(.selected), &.disabled
+      background none 
+      color var(--color-primary)
+      border 1px solid var(--color-primary)
+    &+button
+      margin-left 5px
   .bubble
     padding 0 7px
     text-align left
@@ -639,7 +648,7 @@ export default {
       color #888
       font-size 14px
       line-height 3em
-    ul.info-bar
+    .info-bar
       width 100%
       box-sizing border-box
       margin 0
@@ -648,19 +657,12 @@ export default {
       flex-direction row
       justify-content center
       flex-wrap wrap
-      li.info
-        list-style none
+      button.info
         flex 0 1 auto
-        padding 0 10px
-        margin 0 5px 5px 0
         display flex
         flex-direction row
+        align-items baseline
         justify-content center
-        font-size 14px
-        padding 3px 7px
-        color var(--color-primary-dark)
-        background var(--color-primary-bg)
-        border-radius 3px
         .title
           font-weight bold
           + .content
