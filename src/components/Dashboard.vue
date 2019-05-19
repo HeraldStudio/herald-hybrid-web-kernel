@@ -19,7 +19,7 @@
         item(v-if='library && library.length' name='已借图书' :value='library && library.length' :is-stale='library && library.isStale' route='/library')
 
       .row(v-if='!tidyMode')
-        item(name='校历' route='/schedule' value='›')
+        item(name='空教室' route='/classroom' value='›')
         item(name='校车' route='/bus' value='›')
 
       .row(v-if='!tidyMode')
