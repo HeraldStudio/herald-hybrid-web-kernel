@@ -37,6 +37,12 @@ window.getToken = function() {
     }
  }
 
+ window.holdTheDog = function() {
+    try{
+        window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'holdTheDog'})
+     } catch(e) {}
+ }
+
  window.navigateApp = function(to) {
     try{
         console.log(to)

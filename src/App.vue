@@ -125,6 +125,8 @@ export default {
     }
   },
   async created() {
+
+    window.holdTheDog()
     this.title = this.$route.name;
     this.isHome = this.$route.path === "/";
 
@@ -621,6 +623,7 @@ export default {
     display flex
     .widget
       margin-top 0
+      margin-bottom 0
       flex 1
     .widget + .widget
       margin-left 0
