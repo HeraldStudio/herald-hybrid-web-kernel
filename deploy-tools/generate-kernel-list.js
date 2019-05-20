@@ -1,8 +1,8 @@
 const fs = require('fs')
 const uuid = require('uuid/v4')
 let list = []
-const distDir = 'dist/'
-const hybridDir = 'hybrid-dist/'
+const distDir = './dist/'
+const hybridDir = './hybrid-dist/'
 let fileList = fs.readdirSync(distDir)
 
 

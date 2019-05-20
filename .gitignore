@@ -13,3 +13,4 @@ yarn.lock
 dist
 dist-tmp
 hybrid-dist/*
+deloy-tools/secret.json
