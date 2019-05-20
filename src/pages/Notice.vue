@@ -106,6 +106,7 @@
 </script>
 <style lang="stylus">
   .page.notice
+    width 100%
     li.info
       cursor pointer
       transition .3s

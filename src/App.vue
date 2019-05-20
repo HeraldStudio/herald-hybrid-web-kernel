@@ -627,7 +627,8 @@ export default {
       flex 1
     .widget + .widget
       margin-left 0
-  
+  .page
+    width 100%
   .widget, .page, .admin-page
     position relative
     box-sizing border-box

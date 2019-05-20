@@ -112,6 +112,7 @@
 
 <style lang="stylus" scoped>
   #personal
+    width 100%
     display flex
     flex-direction column
     align-items stretch

@@ -54,6 +54,7 @@
 
   .page.notice-page
     padding 0
+    width 100%
 
     .markdown-container
       border-top 0.5px solid transparent
