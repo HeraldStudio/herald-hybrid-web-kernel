@@ -59,7 +59,6 @@
   .page.activity
     position relative
     padding 0
-    width 100%
 
     @media screen and (max-width: 600px)
       padding 0

@@ -283,7 +283,7 @@
   .widget
     padding 15px 0 0 !important
     --curriculum-background-color #fff
-    margin-top 65px
+    margin-top 65px !important
     
     .curriculum-tabs
       display flex

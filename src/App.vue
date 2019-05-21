@@ -445,8 +445,9 @@ export default {
       margin 0 auto
       display flex
       flex-direction row
-      @media screen and (max-width: 600px)
-        display block
+      justify-content center
+      // @media screen and (max-width: 600px)
+      //   display block
       .overlay-header
         margin 15px
         height 40px
@@ -629,6 +630,7 @@ export default {
       margin-left 0
   .page
     width 100%
+    max-width 600px
   .widget, .page, .admin-page
     position relative
     box-sizing border-box

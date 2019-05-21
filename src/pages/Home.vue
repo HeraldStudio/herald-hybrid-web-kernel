@@ -27,3 +27,12 @@
     }
   }
 </script>
+
+<style lang="less">
+  .home{
+    max-width: 600px;
+  }
+</style>
+
+
+</style>
