@@ -13,7 +13,7 @@
         .number {{pe.remainDays}}
         .text 预计可跑天数
       .content-item
-        .number {{45 - pe.count}}
+        .number {{(45 - pe.count) > 0 ? (45 - pe.count) : 0 }}
         .text 剩余天数
     .widget-line(v-if="pe.hint")
     .hint(v-if="pe.hint") {{pe.hint}}

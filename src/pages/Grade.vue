@@ -43,12 +43,12 @@
             .select-all(@click='toggleSelectAllInSemester(item)') {{ hasSelectAllInSemester(item) ? '全不选' : '全选' }}
           
           //- 先放非选修，可以选择
-          .check-box.required(v-for='k in item.courses' v-if='!k.courseType' :class='{ active: isSelected(k), bad: !k.isPassed, makeup: k.scoreType !== "首修" }' :style='{ opacity: k.equivalentScore / 100 }' @click='toggle(k)')
+          button.check-box.required(v-for='k in item.courses' v-if='!k.courseType' :class='{ disabled: !isSelected(k), bad: !k.isPassed, makeup: k.scoreType !== "首修" }' :style='{ opacity: k.equivalentScore / 100 }' @click='toggle(k)')
             .name {{ k.courseName }}{{ k.scoreType !== '首修' ? ' (' + k.scoreType + ')' : '' }}
             .grade {{ k.equivalentScore }}{{ k.score != k.equivalentScore ? ' (' + k.score + ')' : '' }} × {{ k.credit }}
 
           //- 然后放选修
-          .check-box.optional(v-for='k in item.courses' v-if='k.courseType' :class='{ bad: !k.isPassed, makeup: k.scoreType !== "首修" }')
+          button.check-box.optional(v-for='k in item.courses' v-if='k.courseType' :class='{ disabled: true, bad: !k.isPassed, makeup: k.scoreType !== "首修" }')
             .name {{ k.courseName }}{{ k.scoreType !== '首修' ? '(' + k.scoreType + ')' : '' }}
             .grade {{ k.equivalentScore }} ({{ k.courseType }} {{ k.credit }} 学分)
 
@@ -365,14 +365,14 @@
       },
       // 已知教务处绩点计算时间，求教务处计算截止到哪个学期
       lastCalculateSemester() {
-        if (!this.gpa) {
+        if (!this.gpa.gpa) {
           return
         }
         // 如果还没拉到学期列表，先显示计算时间
         if (!this.term) {
           return formatter.formatTimeNatural(this.gpa.calculationTime)
         }
-
+        
         // 这里有两种情况，可能是在某个学期内计算的，也可能是在某个学期结束后的假期里计算的
         // 这两种情况下都认为计算截止到那个学期
         // 换句话说，计算时间跟计算截止学期之间的关系是不确定的，可能那个学期还没结束，但也可能结束了
@@ -381,7 +381,6 @@
         let term = this.term.list
           .sort((a, b) => a.endDate - b.endDate)
           .find(k => k.startDate >= this.gpa.calculationTime)
-
         if (term) {
           // 如果找到了下个学期，反推上一个学期，作为计算截止学期
           term = this.term.list[this.term.list.indexOf(term) - 1]
@@ -389,7 +388,6 @@
           // 如果找不到这个“下个学期”，说明要找的就是最后一个学期，下个学期还没有收录
           term = this.term.list.slice(-1)[0]
         }
-        
         return term.name
       },
       // 是否需要显示增量推算结果
@@ -483,36 +481,39 @@
         cursor pointer
 
     .check-box
-      background #f7f7f7
-      height 16px
-      line-height 16px
-      border-radius 20px
-      padding 6px 10px
-      margin-right 5px
-      margin-bottom 5px
-      color var(--color-text-regular)
+      background var(--color-primary)
+      box-shadow 0 5px 10px -5px var(--color-primary)
+      color #fff
+      margin-left 0 !important
+      margin-right 7px
+      margin-bottom 7px
       transition .3s
       display flex
       flex-direction row
-      border none !important
+      align-items baseline
       overflow hidden
       position relative
 
       &.required
         cursor pointer
-
+      
       &.bad
-        opacity 1 !important
-
-      &.active
-        background var(--color-primary)
-        color #fff
-      
-      &.bad.active
+        opacity 0.6 !important
         background var(--color-error)
+        border-color var(--color-error)
+        box-shadow 0 5px 10px -5px var(--color-error)
       
-      &.makeup.active
+      &.makeup
         background var(--color-warning)
+        border-color var(--color-warning)
+        box-shadow 0 5px 10px -5px var(--color-warning)
+
+      &.disabled
+        background var(--color-tool-bg)
+        border-color var(--color-tool-bg)
+        box-shadow none
+        color var(--color-text-bold)
+        opacity 1 !important
 
       .name
         white-space nowrap
@@ -520,12 +521,14 @@
         text-overflow ellipsis
         flex 0 0 1
         min-width 0
+        text-align justify
 
       .grade
         opacity .7
         margin-left 5px
         white-space nowrap
         flex 1 1 auto
+        font-weight normal
 
 </style>
 

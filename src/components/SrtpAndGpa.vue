@@ -8,7 +8,7 @@
         .widget-line
         .content
             .content-item
-                .gpa-number {{gpa.gpa}}
+                .gpa-number {{gpa.gpa ? gpa.gpa : '未计算'}}
                 .text 当前GPA
         .widget-line
         .widget-hint 
