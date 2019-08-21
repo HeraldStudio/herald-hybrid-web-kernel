@@ -54,11 +54,11 @@
             confirm-button(v-if='newBanner.pic && newBanner.title && newBanner.startTime && newBanner.endTime' @click='addBanner()' confirm-text='确定新增') 新增轮播图
 </template>
 <script>
-  import api from '@/api'
-  import confirmButton from '@/components/ConfirmButton.vue'
-  import timestamp from '@/components/TimestampPicker.vue'
-  import formatter from '@/util/formatter'
-  import qiniu from '@/components/Qiniu.vue'
+  import api from 'zzj/api'
+  import confirmButton from 'zzj/components/ConfirmButton.vue'
+  import timestamp from 'zzj/components/TimestampPicker.vue'
+  import formatter from 'zzj/util/formatter'
+  import qiniu from 'zzj/components/Qiniu.vue'
 
   export default {
     components: {

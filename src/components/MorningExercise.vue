@@ -26,8 +26,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import formatter from '@/util/formatter'
+  import api from 'zzj/api'
+  import formatter from 'zzj/util/formatter'
   import logo from 'static/images/componentLogo/morningExercise.svg'
 
   export default {

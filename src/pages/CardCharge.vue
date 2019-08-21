@@ -21,8 +21,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import confirmButton from '@/components/ConfirmButton'
+  import api from '../api'
+  import confirmButton from '../components/ConfirmButton'
 
   export default {
     components: {

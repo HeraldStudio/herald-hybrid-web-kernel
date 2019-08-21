@@ -17,8 +17,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import live2d from '@/components/Live2D.vue'
+  import api from 'zzj/api'
+  import live2d from 'zzj/components/Live2D.vue'
 
   export default {
     props: ['user'],

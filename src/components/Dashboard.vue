@@ -30,7 +30,7 @@
 
 <script>
   import item from './DashboardItem.vue'
-  import api from '@/api'
+  import api from 'zzj/api'
   import logoutImg from 'static/images/logout.png'
   import collapseImg from 'static/images/collapse.png'
   import expandImg from 'static/images/expand.png'

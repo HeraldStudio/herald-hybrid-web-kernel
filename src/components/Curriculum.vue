@@ -70,8 +70,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import formatter from '@/util/formatter'
+  import api from 'zzj/api'
+  import formatter from 'zzj/util/formatter'
 
   // 魔法组件，谨慎修改
   export default {

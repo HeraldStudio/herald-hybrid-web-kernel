@@ -6,7 +6,7 @@
 </template>
 <script>
 
-  import renderMarkdown from '@/util/markdown'
+  import renderMarkdown from 'zzj/util/markdown'
 
   export default {
     props: ['markdown'],

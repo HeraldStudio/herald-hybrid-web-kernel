@@ -8,7 +8,7 @@
     p.loading(v-else key='0') 检测中…
 </template>
 <script>
-  import api from '@/api'
+  import api from 'zzj/api'
 
   export default {
     data () {

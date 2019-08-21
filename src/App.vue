@@ -57,7 +57,7 @@ import live2d from "./components/Live2D.vue";
 import seuLogin from "./components/SeuLogin.vue";
 import scrollView from "./components/ScrollView.vue";
 import home from "./pages/Home.vue";
-import login from "@/components/Login.vue";
+import login from "./components/Login.vue";
 
 import logoImg from "static/images/logo.png";
 import downloadImg from "static/images/download.png";

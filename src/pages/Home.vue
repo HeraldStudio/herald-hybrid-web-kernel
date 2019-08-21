@@ -11,14 +11,14 @@
 </template>
 
 <script>
-  import exam from '@/components/Exam.vue'
-  import dashboard from '@/components/Dashboard.vue'
-  import curriculum from '@/components/Curriculum.vue'
-  import experiment from '@/components/Experiment.vue'
-  import morningExercise from '@/components/MorningExercise.vue'
-  import srtpAndGpa from '@/components/SrtpAndGpa.vue'
-  import toutiao from '@/components/TouTiao.vue'
-  import api from '@/api'
+  import exam from '../components/Exam.vue'
+  import dashboard from '../components/Dashboard.vue'
+  import curriculum from '../components/Curriculum.vue'
+  import experiment from '../components/Experiment.vue'
+  import morningExercise from '../components/MorningExercise.vue'
+  import srtpAndGpa from '../components/SrtpAndGpa.vue'
+  import toutiao from '../components/TouTiao.vue'
+  import api from '../api'
 
   export default {
     props: ['user'],

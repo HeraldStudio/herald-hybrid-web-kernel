@@ -13,8 +13,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import formatter from "@/util/formatter"
+  import api from 'zzj/api'
+  import formatter from "zzj/util/formatter"
   import { Carousel, CarouselItem } from 'vue-l-carousel'
 
   export default {

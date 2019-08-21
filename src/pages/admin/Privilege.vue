@@ -39,9 +39,9 @@
             confirm-button(v-if='domain.newAdmin.cardnum && domain.newAdmin.name && domain.newAdmin.phone' @click='addAdmin(domain.domain, domain.newAdmin)' confirm-text='确定新增') 新增管理员
 </template>
 <script>
-  import api from '@/api'
-  import confirmButton from '@/components/ConfirmButton.vue'
-  import formatter from '@/util/formatter'
+  import api from 'zzj/api'
+  import confirmButton from 'zzj/components/ConfirmButton.vue'
+  import formatter from 'zzj/util/formatter'
 
   export default {
     components: {

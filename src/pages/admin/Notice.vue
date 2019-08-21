@@ -23,9 +23,9 @@
             confirm-button(v-if='newNotice.title && newNotice.content' @click='addNotice()' confirm-text='确定新增') 新增公告
 </template>
 <script>
-  import api from '@/api'
-  import confirmButton from '@/components/ConfirmButton.vue'
-  import formatter from '@/util/formatter'
+  import api from 'zzj/api'
+  import confirmButton from 'zzj/components/ConfirmButton.vue'
+  import formatter from 'zzj/util/formatter'
 
   export default {
     components: {

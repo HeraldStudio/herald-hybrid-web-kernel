@@ -19,10 +19,10 @@
 
 </template>
 <script>
-  import api from '@/api'
+  import api from 'zzj/api'
   import Vue from 'vue'
-  import formatter from '@/util/formatter'
-  import markdown from '@/components/Markdown'
+  import formatter from 'zzj/util/formatter'
+  import markdown from 'zzj/components/Markdown'
 
   const RouterLink = Vue.component('router-link')
 

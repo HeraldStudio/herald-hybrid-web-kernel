@@ -9,8 +9,8 @@
 </template>
 <script>
 
-  import api from '@/api'
-  import renderMarkdown from '@/util/markdown'
+  import api from 'zzj/api'
+  import renderMarkdown from 'zzj/util/markdown'
 
   export default {
     data() {

@@ -11,7 +11,7 @@
 </template>
 <script>
 
-  import api from '@/api'
+  import api from '../api'
   import formatter from '../util/formatter'
 
   export default {

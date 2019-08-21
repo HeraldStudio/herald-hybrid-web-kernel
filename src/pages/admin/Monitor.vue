@@ -89,9 +89,9 @@
             td {{ user.monthlyInvoke }}
 </template>
 <script>
-  import api from '@/api'
-  import confirmButton from '@/components/ConfirmButton.vue'
-  import formatter from '@/util/formatter'
+  import api from 'zzj/api'
+  import confirmButton from 'zzj/components/ConfirmButton.vue'
+  import formatter from 'zzj/util/formatter'
 
   export default {
     components: {

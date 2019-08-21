@@ -17,15 +17,15 @@
         img.go-icon(:src='goImg')
     
 
-      .applet.end(@click='schoolCalendar()')
+      router-link.applet(to='/Schedule')
         img.icon(:src='appletSchoolCalenderImg')
-        .text 2018-2019 校历
+        .text 2019-2020 校历
         img.go-icon(:src='goImg')
  
 </template>
 
 <script>
-  import api from '@/api'
+  import api from 'zzj/api'
   import logoutImg from 'static/images/logout.png'
   import downloadImg from 'static/images/download.png'
   import goImg from 'static/images/go.png'
@@ -54,7 +54,7 @@
     },
     methods: {
       schoolCalendar(){
-        window.openURL('http://jwc.seu.edu.cn/_upload/article/images/97/ba/7bae1a694170b4ecb46a409d7eba/7934c5dc-81cf-4576-ba93-7ecb415b3b8e.jpg', f)
+        window.openURL('http://jwc.seu.edu.cn/_upload/article/images/94/41/086dd9d64c838a834c2cdc0e2d11/f7150e42-c090-4b53-8d6b-f5f22044b25f.jpg', false)
         
       },
       logout() {
