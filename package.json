@@ -8,7 +8,6 @@
     "dev": "parcel index.html --port 8080",
     "build": "rm -rf dist && parcel build index.html --public-url /; cp src/manifest* dist/",
     "package": "cd ./dist && zip -r ../dist.zip ./* && cd .. && rm -rf hybrid-dist/* && mv dist.zip ./hybrid-dist/kernel.zip && node ./deploy-tools/generate-kernel-list.js && cp -R ./dist/* ./hybrid-dist/ ",
-    "upload": "node ./deploy-tools/upload.js",
     "test": "anywhere -s -p 8080 -d ./hybrid-dist"
   },
   "dependencies": {

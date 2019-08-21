@@ -17,7 +17,7 @@
         img.go-icon(:src='goImg')
     
 
-      router-link.applet(to='/Schedule')
+      router-link.applet.end(to='/Schedule')
         img.icon(:src='appletSchoolCalenderImg')
         .text 2019-2020 校历
         img.go-icon(:src='goImg')
