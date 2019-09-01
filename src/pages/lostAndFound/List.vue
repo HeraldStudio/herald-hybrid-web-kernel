@@ -96,7 +96,7 @@ export default {
     },
     publish() {
       //this.$router.push({ path: "/lost-and-found/publish" });
-      window.openURL(`https://myseu.cn/#/lost-and-found/publish`, false)
+      window.openURL(`http://192.168.1.101:8080/#/lost-and-found/publish?importToken=${api.token}`, false)
     },
     detail(id) {
       this.$router.push({ path: `/lost-and-found/detail/${id}` });
