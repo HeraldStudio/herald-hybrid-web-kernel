@@ -13,7 +13,10 @@
       .empty-hint(v-if="list.length === 0 && column !== 'myself'") 还没有发布内容鸭
       .line(v-if="list.length === 0 && column !== 'myself'")
       .line(v-if="column === 'myself'" style="margin-top:15px;")
-      button(v-if="column === 'myself'" class="selected" @click='publish' style="height:30px; margin-top:15px;margin-bottom:0px;box-shadow:none; border-radius:4px;") 我要发布
+      div(style="display:flex;")
+        button(v-if="column === 'myself'" class="selected" @click='publish' style="flex-grow:1;height:30px; margin-top:15px;margin-bottom:0px;box-shadow:none; border-radius:4px;") 我要发布
+        button(v-if="column === 'myself'" class="selected" @click='loadMyself' style="margin-left:10px;height:30px; margin-top:15px;margin-bottom:0px;box-shadow:none; border-radius:4px;") 刷新
+      .hint(v-if="column === 'myself'" style="margin-top:10px;color:'#e0e0e0'") （发布消息操作将带您往小猴偷米 PWA 进行，请同意小猴偷米打开浏览器，并且可能需要您在浏览器中再次输入登录信息）
       .lf-list(v-if="list.length > 0")
         .lf-item(v-for="item in list" key="item._id" @click="detail(item._id)")
           .line
@@ -96,10 +99,10 @@ export default {
     },
     publish() {
       //this.$router.push({ path: "/lost-and-found/publish" });
-      window.openURL(`http://192.168.1.101:8080/#/lost-and-found/publish?importToken=${api.token}`, false)
+      window.openURL(`https://myseu.cn/#/lost-and-found/publish`, false)
     },
     detail(id) {
-      this.$router.push({ path: `/lost-and-found/detail/${id}` });
+      this.$router.push({ path: `/lost-and-found/detail/${id}?jsbridge=1` });
     },
     async loadMessageCount() {
       this.messageCount = await api.get("/api/lostAndFound/message");
@@ -124,6 +127,9 @@ export default {
     let res = await api.get(`/api/lostAndFound?type=audit&page=1&pagesize=10`);
     this.isAdmin = res.length > 0;
     await this.loadMessageCount();
+    if(this.$route.query.audit){
+      this.column = 'audit'
+    }
     this.load();
   }
 };

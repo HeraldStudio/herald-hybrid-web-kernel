@@ -89,4 +89,9 @@ window.clearTodayExtItems = function(type) {
    } catch(e) {}
 }
 
+window.goback = function(){
+    try{
+        window.webkit.messageHandlers.heraldAppBridge.postMessage({action:'goback'})
+    } catch(e) {}
+}
  

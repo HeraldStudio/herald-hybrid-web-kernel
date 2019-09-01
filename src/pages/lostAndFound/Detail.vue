@@ -13,7 +13,7 @@
     div(v-if="images.length > 0")
       .lf-image-box( v-for="img in images")
         img.lf-image(:src='img' v-if="images.length > 0")
-    .lf-field(v-if="canAudit && !isAudit")
+    .lf-field(v-if="canAudit && !isAudit && !isFinished")
       .lf-hint 审核
       .lf-button-panel(style="margin-top:10px;")
         button(@click="audit(true)") 允许发布
@@ -73,7 +73,7 @@ export default {
     async load() {
       this.id = this.$route.params.id;
       if (!this.id) {
-        this.$router.go(-1);
+        this.$router.replace('/lost-and-found?jsbridge=1')
         return;
       }
       try {
@@ -100,7 +100,7 @@ export default {
         this.creator = res.creator;
       } catch (e) {
         this.$toasted.show("获取失败");
-        this.$router.go(-1);
+        this.$router.replace('/lost-and-found?jsbridge=1')
       }
     },
     async audit(pass) {
@@ -108,28 +108,29 @@ export default {
         await api.post("/api/lostAndFound/audit", { id: this.id, pass });
         this.load();
         this.$toasted.show("操作成功");
-        this.$router.go(-1);
+        this.$router.replace('/lost-and-found?jsbridge=1&audit=1')
       } catch (e) {
         this.$toasted.show("操作失败，请重试");
+        this.$router.replace('/lost-and-found?jsbridge=1&audit=1')
       }
     },
     async finish() {
       try {
         await api.post("/api/lostAndFound/success", { id: this.id });
         this.$toasted.show("确认完成");
-        this.$router.go(-1);
+        this.$router.replace('/lost-and-found?jsbridge=1')
       } catch (e) {
         this.$toasted.show("出现错误，请重试");
       }
     },
     edit() {
-      this.$router.push("/lost-and-found/publish/" + this.id);
+       window.openURL("https://myseu.cn/#/lost-and-found/publish/" + this.id, false);
     },
     async deleteItem() {
       try {
         await api.delete("/api/lostAndFound", { id: this.id });
         this.$toasted.show("删除成功");
-        this.$router.go(-1);
+        this.$router.replace('/lost-and-found?jsbridge=1')
       } catch (e) {
         this.$toasted.show("出现错误，请重试");
       }
