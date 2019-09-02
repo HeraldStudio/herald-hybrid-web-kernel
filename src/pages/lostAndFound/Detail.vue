@@ -124,7 +124,7 @@ export default {
       }
     },
     edit() {
-       window.openURL("https://myseu.cn/#/lost-and-found/publish/" + this.id, false);
+       window.openURL(`https://myseu.cn/app-support/#/lost-and-found/${api.token}/${this.id}`, false)
     },
     async deleteItem() {
       try {

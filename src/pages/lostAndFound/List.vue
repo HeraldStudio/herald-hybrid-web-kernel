@@ -99,7 +99,7 @@ export default {
     },
     publish() {
       //this.$router.push({ path: "/lost-and-found/publish" });
-      window.openURL(`https://myseu.cn/#/lost-and-found/publish`, false)
+      window.openURL(`https://myseu.cn/app-support/#/lost-and-found/${api.token}`, false)
     },
     detail(id) {
       this.$router.push({ path: `/lost-and-found/detail/${id}?jsbridge=1` });
