@@ -91,6 +91,17 @@ export default {
           : 0;
       }, 5000);
     });
+    api.get('/api/lostAndFound/message').then(res => {
+        let amount = 0
+        Object.keys(res).forEach(id => {
+          amount += res[id]
+        })
+        if(amount){
+          this.lostAndFoundMsg = amount + '条新消息'
+        } else {
+          this.lostAndFoundMsg = '›'
+        }
+      })
   },
   methods: {
     logout() {
