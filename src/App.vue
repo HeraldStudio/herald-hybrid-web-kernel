@@ -205,7 +205,6 @@ export default {
     margin 0
     padding 0
     background var(--color-tool-bg)
-    overflow hidden
   p, input, textarea
     margin-top 0
     margin-bottom 0
